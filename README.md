@@ -15,20 +15,20 @@ Topics:
 
 #### Initialize Project
 
-* Run `npm install` inside the root directory of this project to install dependencies for the API server.
-* Run `npm start` to start the API server.
-* `cd` into the _friends_ folder.
-* Run `npm start` to start the client code.
+[x] Run `npm install` inside the root directory of this project to install dependencies for the API server.
+[x] Run `npm start` to start the API server.
+[x] `cd` into the _friends_ folder.
+[x] Run `npm start` to start the client code.
 
 ### Task 2: MVP
 
 #### Project Description
 
-* There is an API built that has authentication built into it. The API holds a list of friends and lets you add, edit, or remove friends from that list. 
-* All of the API endpoints (except the login endpoint) are considered "protected", meaning you have to make the request with an authentication token in the header or the API will send back a `401` error. 
-* Take your examples from the guided project and use them to build a more sophisticated application. Have fun!
-* Once your server is up and running, the URL you'll be able to hit from within your app is `http://localhost:5000`. You will however need an authentication header on all the calls except the login call.
-* Take a look at the endpoints that our API has to offer in `server.js`.
+[] There is an API built that has authentication built into it. The API holds a list of friends and lets you add, edit, or remove friends from that list. 
+[] All of the API endpoints (except the login endpoint) are considered "protected", meaning you have to make the request with an authentication token in the header or the API will send back a `401` error. 
+[] Take your examples from the guided project and use them to build a more sophisticated application. Have fun!
+[] Once your server is up and running, the URL you'll be able to hit from within your app is `http://localhost:5000`. You will however need an authentication header on all the calls except the login call.
+[] Take a look at the endpoints that our API has to offer in `server.js`.
 
   * **[POST]** * to `/api/login`: returns a token to be added to the header of all other requests. Pass in the following credentials as the `body` of the request: `{ username: 'lambda', password: 'school' }`
   * **[POST]** * to `/api/logout`: removes a token from active use. Returns the inactive token. 
