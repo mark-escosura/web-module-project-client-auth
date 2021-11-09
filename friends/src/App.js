@@ -1,18 +1,36 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+
 import './App.css';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import Homepage from './components/Homepage';
+import Login from './components/Login';
 
 
-const Login = ()=> {
-  return (<h2>Login</h2>)
-}
-
-function App() {
+export default function App(props) {
+   
   return (
-    <div className="App">
-      <h2>Client Auth Project</h2>
-    </div>
-  );
-}
+    <Router>
+      <div className='App'>
+        <nav>
+          <h1 className='homepage-header'>WeAreFobs </h1>
+          <div className='nav-links'>
+            <Link to="/">Home</Link>
+            
+            <Link to="/login">Login</Link>
+          </div>
+        </nav>
 
-export default App;
+        <Switch>
+          <Route path='/login'>
+            <Login />
+          </Route>
+          <Route path="/">
+            <Homepage />
+          </Route>
+        </Switch>
+        
+      </div>
+    </Router>
+
+  )
+}
