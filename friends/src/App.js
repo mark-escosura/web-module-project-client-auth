@@ -6,8 +6,11 @@ import Homepage from './components/Homepage';
 import Login from './components/Login';
 
 
-export default function App(props) {
-   
+export default function App() {
+  
+  const isLoggedIn = localStorage.getItem('token');
+  const role = localStorage.getItem('role');
+
   return (
     <Router>
       <div className='App'>
@@ -17,18 +20,17 @@ export default function App(props) {
             <Link to="/">Home</Link>
             
             <Link to="/login">Login</Link>
+
+            {(role === 'admin' && isLoggedIn) && <Link to="/logout">Logout</Link> }
+            {(isLoggedIn === true) && <Link to="/friends">Friends</Link> }
           </div>
         </nav>
 
         <Switch>
-          <Route path='/login'>
-            <Login />
-          </Route>
-          <Route path="/">
-            <Homepage />
-          </Route>
+          <Route path='/login' component={Login} />
+          <Route  path="/" component={Homepage} />
         </Switch>
-        
+
       </div>
     </Router>
 

@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom'
-import axios from 'axios';
-
-const InitialState = {
-    credentials: {
-        username: '',
-        password: ''
-    }
-}
+import axiosWithAuth from '../utilities/axiosWithAuth';
 
 export default function Login () {
+
+    const InitialState = {
+        credentials: {
+            username: '',
+            password: ''
+        }
+    }
 
     const [credentials, setCredentials] = useState(InitialState)
     const { push } = useHistory();
@@ -27,12 +27,12 @@ export default function Login () {
         e.preventDefault();
         //1. axios call http://localhost:5000/api/login pass in username and password through the body
     
-        axios.post('http://localhost:5000/api/login', credentials)
+        axiosWithAuth().post('/login', credentials)
           .then(resp=> {
             //2. if the call is successful: save token in localStorage
             localStorage.setItem('token', resp.data.token);
-            localStorage.setItem('role', resp.data.role);
             localStorage.setItem('username', resp.data.username);
+            localStorage.setItem('role', resp.data.role);
             push('/protected');
           })
           .catch(err=> {
