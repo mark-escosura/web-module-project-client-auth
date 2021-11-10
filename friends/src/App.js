@@ -1,18 +1,38 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+
 import './App.css';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import Homepage from './components/Homepage';
+import Login from './components/Login';
 
 
-const Login = ()=> {
-  return (<h2>Login</h2>)
-}
+export default function App() {
+  
+  const isLoggedIn = localStorage.getItem('token');
+  const role = localStorage.getItem('role');
 
-function App() {
   return (
-    <div className="App">
-      <h2>Client Auth Project</h2>
-    </div>
-  );
-}
+    <Router>
+      <div className='App'>
+        <nav>
+          <h1 className='homepage-header'>WeAreFobs </h1>
+          <div className='nav-links'>
+            <Link to="/">Home</Link>
+            
+            <Link to="/login">Login</Link>
 
-export default App;
+            {(role === 'admin' && isLoggedIn) && <Link to="/logout">Logout</Link> }
+            {(isLoggedIn === true) && <Link to="/friends">Friends</Link> }
+          </div>
+        </nav>
+
+        <Switch>
+          <Route path='/login' component={Login} />
+          <Route  path="/" component={Homepage} />
+        </Switch>
+
+      </div>
+    </Router>
+
+  )
+}
